@@ -1,0 +1,12 @@
+.stopwatch-timer{
+  height: 250px;
+  width: 250px;
+  box-sizing: border-box;
+}
+.stopwatch-timer-duration {
+    position: absolute;
+    margin: 125px auto 0  auto;
+    width: inherit;
+    text-align: center;
+    font-size: 36px;
+}

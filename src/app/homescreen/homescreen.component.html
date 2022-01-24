@@ -1,0 +1,9 @@
+<app-stopwatch-timer></app-stopwatch-timer>
+
+<mat-grid-list class="stopwatch-controls" cols="2" rowHeight="100px">
+    <mat-grid-tile *ngFor="let control of controls" [colspan]="control.cols" [rowspan]="control.rows">
+        <button mat-fab [color]="control.color" aria-label="control.altText" [matTooltip]="control.altText">
+            <mat-icon>{{control.iconName}}</mat-icon>
+          </button>
+    </mat-grid-tile>
+</mat-grid-list>
