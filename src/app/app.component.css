@@ -14,3 +14,7 @@
     flex-grow: 1;
 }
 
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  
