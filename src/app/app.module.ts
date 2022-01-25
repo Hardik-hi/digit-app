@@ -11,14 +11,16 @@ import { StopwatchTimerComponent } from './homescreen/stopwatch-timer/stopwatch-
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatCardModule} from '@angular/material/card';
-
+import {TimeHelperService} from './time-helper.service';
+import { DialogComponent } from './homescreen/dialog/dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomescreenComponent,
-    StopwatchTimerComponent
+    StopwatchTimerComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +31,9 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatCardModule
+    MatDialogModule
   ],
-  providers: [],
+  providers: [TimeHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

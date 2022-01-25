@@ -12,7 +12,6 @@
     margin-top: 10vh;
 }
 
-
-app-stopwatch-timer{
-    
+.selected{
+    background-color: blanchedalmond;
 }
