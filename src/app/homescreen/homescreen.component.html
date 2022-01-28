@@ -1,9 +1,12 @@
-<app-stopwatch-timer [timeRemaining]="timeRemaining"></app-stopwatch-timer>
+<app-dialog *ngIf="isDialogOpen===true"></app-dialog>
+<app-stopwatch-timer *ngIf="isDialogOpen===false" [timeRemaining]="timeRemaining"></app-stopwatch-timer>
 
-<mat-grid-list class="stopwatch-controls" cols="2" rowHeight="100px">
+<mat-grid-list *ngIf="isDialogOpen===false" class="stopwatch-controls" cols="2" rowHeight="100px">
     <mat-grid-tile *ngFor="let control of controls" [colspan]="control.cols" [rowspan]="control.rows">
         <button mat-fab [color]="control.color" aria-label="control.altText" [matTooltip]="control.altText" (click)="control.action()">
             <mat-icon >{{control.iconName}}</mat-icon>
           </button>
     </mat-grid-tile>
 </mat-grid-list>
+
+<button mat-button (click)="openDialog()">Open dialog</button>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IpcRenderer } from 'electron';
 import { TimeType,TimeHelperService } from 'src/app/time-helper.service';
+
 
 export interface Control{
   rows: number,
@@ -22,6 +24,7 @@ export class HomescreenComponent implements OnInit {
 
   
   isPlayed=true;
+  isDialogOpen=false;
   controls: Control[] = [
     {rows: 1, cols: 1, altText: 'Pause/Play', toggled: false, iconName: 'pause', color: 'black',action: ()=>{this.onPlayPause()}},
     {rows: 1, cols: 1, altText: 'Reset', toggled: false, iconName: 'replay_rounded', color: 'black', action: ()=>{this.onReset()}}
@@ -29,8 +32,15 @@ export class HomescreenComponent implements OnInit {
   
 
   timeRemaining! : TimeType;
-  constructor(private timeHelper:TimeHelperService) { }
+  //private ipc!:IpcRenderer;
+  constructor(private timeHelper:TimeHelperService) { 
+    //notification call
+    
+  }
+
   intervalId!:any;
+
+
 
   intervalTimer(){
 
@@ -76,7 +86,10 @@ export class HomescreenComponent implements OnInit {
     this.isPlayed=false;
     this.controls[0].iconName='play_arrow';
   }
-
+  
+  openDialog(){
+    this.isDialogOpen=(!this.isDialogOpen);
+  }
   ngOnInit(): void {
     //getting the timeRemaining
     this.timeRemaining=this.timeHelper.getRemainingTime();
@@ -84,6 +97,7 @@ export class HomescreenComponent implements OnInit {
     
   }
 
+ 
 
 
 }

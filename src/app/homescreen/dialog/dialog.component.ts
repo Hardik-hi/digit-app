@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+
+export interface Cards{
+  title: string,
+  iconName: string,
+  content: string
+}
 
 @Component({
   selector: 'app-dialog',
@@ -9,6 +14,9 @@ import {MatDialog} from '@angular/material/dialog';
 export class DialogComponent implements OnInit {
 
   constructor() { }
+  cards: Cards[] =[{title: 'Blink',iconName: 'visibility_rounded',content: 'for 20 seconds'},
+  {title: 'Look',iconName: 'visibility_rounded',content: '20 feet away'},
+  {title: 'Brisk off',iconName: 'visibility_rounded',content: 'slow and steady'}] ;
 
   ngOnInit(): void {
   }

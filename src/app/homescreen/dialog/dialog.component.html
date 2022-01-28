@@ -1,1 +1,21 @@
-<p>dialog works!</p>
+<div class="break-title">
+    Time for a break!
+</div>
+
+<div class="break-content">
+    <div class="break-rules-tile" *ngFor="let card of cards">
+
+        <div class="tile-image">
+            <mat-icon inline="true">{{card.iconName}}</mat-icon>
+        </div>
+
+        <div class="tile-title">
+            {{card.title}}
+        </div>
+
+        <div class="body-caption">
+            {{card.content}}
+        </div>
+
+    </div>
+</div>
