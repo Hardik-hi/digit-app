@@ -10,7 +10,9 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            contextIsolation: true, // protect against prototype pollution
+      enableRemoteModule: false, // turn off remote
+            preload: __dirname + '/preload.js'
         }
     });
 
@@ -35,31 +37,31 @@ function createWindow() {
 }
 
 //notification function
-function timerNotify(){
-    const {Notification}=require('electron');
-    if(!Notification.isSupported()){
+function timerNotify() {
+    const { Notification } = require('electron');
+    if (!Notification.isSupported()) {
         console.log("Notifications are not supported in OS");
     }
-    let newNotif=new Notification('Time is up chikli');
+    let newNotif = new Notification({title:'Laptop',subtitle: 'Hello chikli',body: 'Plij dont ;-;'});
 
     newNotif.show();
 }
 
-app.whenReady().then(()=>{
+app.whenReady().then(() => {
     createWindow();
 
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
-      })
+    })
 });
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit();
 });
 
-ipcMain.on('onTimerNotify',(event, args)=>{
+ipcMain.on('onTimerNotify', (event, args) => {
     timerNotify();
 });
 

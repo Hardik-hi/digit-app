@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IpcRenderer } from 'electron';
+import { WindowRefService } from '../window-ref.service';
 import { TimeType,TimeHelperService } from 'src/app/time-helper.service';
 
 
@@ -32,10 +32,11 @@ export class HomescreenComponent implements OnInit {
   
 
   timeRemaining! : TimeType;
+  private _window!: any;
   //private ipc!:IpcRenderer;
-  constructor(private timeHelper:TimeHelperService) { 
+  constructor(private timeHelper:TimeHelperService,windowRef: WindowRefService) { 
     //notification call
-    
+    this._window = windowRef.nativeWindow;
   }
 
   intervalId!:any;
@@ -97,6 +98,13 @@ export class HomescreenComponent implements OnInit {
     
   }
 
+  
+  showNotif(){
+
+    console.log("Notif shown");
+    this._window.api.send("onTimerNotify", "onTimerNotify");
+    //this.ipc.send('onTimerNotify');
+  }
  
 
 

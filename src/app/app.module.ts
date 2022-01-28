@@ -15,6 +15,7 @@ import {TimeHelperService} from './time-helper.service';
 import { DialogComponent } from './homescreen/dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { WindowRefService } from './window-ref.service';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,10 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+  
   ],
-  providers: [TimeHelperService],
+  providers: [TimeHelperService, WindowRefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
