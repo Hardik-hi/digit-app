@@ -51,6 +51,11 @@ export class HomescreenComponent implements OnInit {
         seconds--;
       }
       else{
+        if(minutes<=0){
+          this.onReset();
+          this.showNotif();
+          return;
+        }
         seconds=59;
         minutes--;
       }
@@ -91,10 +96,14 @@ export class HomescreenComponent implements OnInit {
   openDialog(){
     this.isDialogOpen=(!this.isDialogOpen);
   }
+
   ngOnInit(): void {
     //getting the timeRemaining
     this.timeRemaining=this.timeHelper.getRemainingTime();
     this.intervalId=this.intervalTimer();
+    this._window.api.receive("fromMain",()=>{
+      this.openDialog();
+    });
     
   }
 
@@ -106,6 +115,6 @@ export class HomescreenComponent implements OnInit {
     //this.ipc.send('onTimerNotify');
   }
  
-
+  
 
 }

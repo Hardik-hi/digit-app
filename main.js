@@ -42,7 +42,13 @@ function timerNotify() {
     if (!Notification.isSupported()) {
         console.log("Notifications are not supported in OS");
     }
-    let newNotif = new Notification({title:'Laptop',subtitle: 'Hello chikli',body: 'Plij dont ;-;'});
+    let newNotif = new Notification({title:'Break time!',body: 'Blink. Walk. Breathe.',timeoutType:'never'});
+
+    newNotif.on('click', (event, arg) => {
+        mainWindow.webContents.send("fromMain");
+        mainWindow.maximize();
+        console.log("clicked");
+    });
 
     newNotif.show();
 }

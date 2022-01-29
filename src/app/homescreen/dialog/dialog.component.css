@@ -1,31 +1,115 @@
+.app-dialog{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    animation-name: onloaded;
+    animation-duration: 2s;
+}
+
+/* title properties*/
+.break-title{
+    font-size: 36px;
+    text-align: center;
+    margin: 4vh auto;
+}
+
+/*content properties*/
 .break-content{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-content: space-between;
     flex-grow:1;
+    flex-wrap: nowrap;
+    justify-content: space-around;
     
 }
-.break-title{
-    font-size: 30px;
-    text-align: center;
 
-}
-.break-rules-tile{
-    flex-grow: 1;
+/*tile properties*/
+
+.tile{
     display: flex;
     flex-direction: column;
-    justify-content:center;
-    align-content: space-between;
 }
-.tile-image{
-    display: flex;
-    justify-content: center;
-    font-size: 40px;
+.tile-icon{
+    flex-grow:1;
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    animation-iteration-count: 2;
+    animation-duration: 1s;
+    animation-timing-function:ease;
+    animation-direction: alternate;
+    animation-fill-mode: backwards;
 }
+.tile-icon:hover{
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+.Blink{
+    animation-name: example1;
+    animation-delay: 2s;
+}
+.Look{
+    animation-name: example2;
+    animation-delay: 5s;
+}
+.Walk{
+    animation-name: example3;
+    animation-delay: 7s;
+}
+
 .tile-title{
     text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin:4vh auto 1vh auto;
 }
-.body-caption{
+.tile-content{
     text-align: center;
 }
+
+/*animations*/
+
+@keyframes example {
+    from {color: primary;}
+    to {color: rgb(51, 51, 51);}
+}
+
+
+@keyframes example1 {
+    from {  transform: rotateX(0deg);  }
+    to {transform: rotateX(360deg);}
+}
+
+@keyframes example2 {
+    0% {
+              transform: scale(1);
+
+    }
+    100% {
+              transform: scale(0.5);
+              
+    }
+  }
+
+  @keyframes example3 {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(10px);
+              transform: translateX(10px);
+    }
+  }
+
+  @keyframes onloaded{
+      0%{
+        opacity: 0;
+      }
+      100%{
+        opacity:1;
+      }
+  }
+  

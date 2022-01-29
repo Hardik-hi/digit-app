@@ -9,4 +9,4 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-<button mat-button (click)="showNotif()">Open dialog</button>
+<button mat-button *ngIf="isDialogOpen===true" (click)="openDialog()">I'm done!</button>

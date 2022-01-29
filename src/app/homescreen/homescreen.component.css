@@ -11,14 +11,7 @@
     min-height: 100px;
     margin-top: 10vh;
 }
-app-dialog{
-    display: flex;
-    flex-direction: column;
-  align-content: space-around;
-    border: 1px solid black;
-    padding: 10px;
-    height: 250px;
-}
+
 .selected{
     background-color: blanchedalmond;
 }
