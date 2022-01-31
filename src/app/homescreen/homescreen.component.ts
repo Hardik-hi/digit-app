@@ -54,6 +54,7 @@ export class HomescreenComponent implements OnInit {
         if(minutes<=0){
           this.onReset();
           this.showNotif();
+          this.openDialog();
           return;
         }
         seconds=59;
@@ -101,11 +102,13 @@ export class HomescreenComponent implements OnInit {
     //getting the timeRemaining
     this.timeRemaining=this.timeHelper.getRemainingTime();
     this.intervalId=this.intervalTimer();
-    this._window.api.receive("fromMain",()=>{
-      this.openDialog();
-    });
+    /* this._window.api.receive("fromMain",()=>{
+      console.log("recived");
+      //this.openDialog();
+    }); */
     
   }
+ 
 
   
   showNotif(){

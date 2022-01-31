@@ -11,7 +11,7 @@ export interface TimeType{
 export class TimeHelperService {
 
   timeRemaining: TimeType = {
-    minutes:1,
+    minutes:20,
     seconds:0
   };
 
