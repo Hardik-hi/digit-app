@@ -1,7 +1,7 @@
 .app-dialog{
     display: flex;
     flex-direction: column;
-    width: 800px;
+    width: 550px;
     animation-name: onloaded;
     animation-duration: 2s;
 }
@@ -10,7 +10,7 @@
 .break-title{
     font-size: 36px;
     text-align: center;
-    margin: 4vh auto;
+    margin: 5vh auto;
 }
 
 /*content properties*/

@@ -13,8 +13,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {TimeHelperService} from './time-helper.service';
 import { DialogComponent } from './homescreen/dialog/dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatCardModule} from '@angular/material/card';
 import { WindowRefService } from './window-ref.service';
 
 @NgModule({
@@ -32,10 +30,7 @@ import { WindowRefService } from './window-ref.service';
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule,
-    MatDialogModule,
-    MatCardModule,
-  
+    MatTooltipModule,  
   ],
   providers: [TimeHelperService, WindowRefService],
   bootstrap: [AppComponent]

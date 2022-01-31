@@ -1,0 +1,47 @@
+@use '/node_modules/@angular/material' as mat;
+@include mat.core();
+
+
+$green-palette:(
+    50: #DFF1F0,
+ 100: #B1DDD9,
+ 200: #7EC7E0,
+ 300: #4BB1A7,
+ 400: #25A095,
+ 500: #018F82,
+ 600: #018375,
+ 700: #017365,
+ 800: #016357,
+ 900: #02473B,
+
+ contrast:(
+    50: #F5E6E8,
+    100: #AD1F23,
+    200: #AD1F23,
+    300: #AD1F23,
+    400: #AD1F23,
+    500: #AD1F23,
+    600: #AD1F23,
+    700: #AD1F23,
+    800: #AD1F23,
+    900: #AD1F23,
+ )
+);
+
+$digit-primary: mat.define-palette($green-palette, 700,600,800,500);
+$digit-accent: mat.define-palette($green-palette);
+
+$digit-theme: mat.define-light-theme((
+ color: (
+   primary: $digit-primary,
+   accent: $digit-accent,
+ )
+));
+
+@include mat.core-theme($digit-theme);
+@include mat.button-theme($digit-theme);
+@include mat.toolbar-theme($digit-theme);
+@include mat.grid-list-theme($digit-theme);
+@include mat.progress-spinner-theme($digit-theme);
+@include mat.tooltip-theme($digit-theme);
+@include mat.icon-theme($digit-theme);
