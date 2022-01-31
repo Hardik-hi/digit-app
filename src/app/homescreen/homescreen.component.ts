@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { WindowRefService } from '../window-ref.service';
-import { TimeType,TimeHelperService } from 'src/app/time-helper.service';
+import { TimeType, TimeHelperService } from 'src/app/time-helper.service';
 
 
-export interface Control{
+export interface Control {
   rows: number,
   cols: number,
   altText: string
   toggled: boolean,
   iconName: string,
   color: string,
-  action: ()=>void;
+  action: () => void;
 };
 
 
@@ -22,102 +22,97 @@ export interface Control{
 export class HomescreenComponent implements OnInit {
 
 
-  
-  isPlayed=true;
-  isDialogOpen=false;
+  //data members
+  isPlayed = true;
+  isDialogOpen = false;
   controls: Control[] = [
-    {rows: 1, cols: 1, altText: 'Pause/Play', toggled: false, iconName: 'pause', color: 'black',action: ()=>{this.onPlayPause()}},
-    {rows: 1, cols: 1, altText: 'Reset', toggled: false, iconName: 'replay_rounded', color: 'black', action: ()=>{this.onReset()}}
+    { rows: 1, cols: 1, altText: 'Pause/Play', toggled: false, iconName: 'pause', color: 'black', action: () => { this.onPlayPause() } },
+    { rows: 1, cols: 1, altText: 'Reset', toggled: false, iconName: 'replay_rounded', color: 'black', action: () => { this.onReset() } }
   ];
-  
-
-  timeRemaining! : TimeType;
+  timeRemaining!: TimeType;
   private _window!: any;
-  //private ipc!:IpcRenderer;
-  constructor(private timeHelper:TimeHelperService,windowRef: WindowRefService) { 
+  intervalId!: any;
+
+  constructor(private timeHelper: TimeHelperService, windowRef: WindowRefService) {
     //notification call
     this._window = windowRef.nativeWindow;
   }
 
-  intervalId!:any;
+  ngOnInit(): void {
+    //getting the timeRemaining
+    this.timeRemaining = this.timeHelper.getRemainingTime();
+    this.intervalId = this.intervalTimer();
+  }
 
+  /* --------------Member functions---------- */
 
+  //creates a new interval timer every 1s which monitors the changes in the timeRemaining
+  intervalTimer() {
 
-  intervalTimer(){
-
-    return setInterval(()=>{
-      let {minutes,seconds}=this.timeRemaining;
-      if(seconds>0){
+    return setInterval(() => {
+      let { minutes, seconds } = this.timeRemaining;
+      if (seconds > 0) {
         seconds--;
       }
-      else{
-        if(minutes<=0){
+      else {
+        if (minutes <= 0) {
           this.onReset();
           this.showNotif();
           this.openDialog();
           return;
         }
-        seconds=59;
+        seconds = 59;
         minutes--;
       }
-      //window.alert(minutes);
-      this.timeRemaining=this.timeHelper.setRemainingTime({minutes: minutes, seconds: seconds});
-    },1000);
+      
+      this.timeRemaining = this.timeHelper.setRemainingTime({ minutes: minutes, seconds: seconds });
+    }, 1000);
 
   }
 
-  onPlayPause():void {
-    
+  //called when play/pause button clicked
+  onPlayPause(): void {
 
-    //this.timeRemaining=this.timeHelper.setRemainingTime({minutes: 30, seconds: 59});
-   // window.alert(this.timeRemaining.minutes);
-   if(this.isPlayed){
-    clearInterval(this.intervalId);
-    this.isPlayed=false;
-    this.controls[0].iconName='play_arrow';
-   }
-    else{
-      this.intervalId=this.intervalTimer();
-      this.isPlayed=true;
-      this.controls[0].iconName='pause';
+    if (this.isPlayed) {
+      clearInterval(this.intervalId);
+      this.isPlayed = false;
+      this.controls[0].iconName = 'play_arrow';
+    }
+    else {
+      this.intervalId = this.intervalTimer();
+      this.isPlayed = true;
+      this.controls[0].iconName = 'pause';
     }
 
-    
-
-
   }
 
-  onReset():void {
-    this.timeRemaining=this.timeHelper.setRemainingTime({minutes: 20, seconds: 0});
+  //called when timer is reset
+  onReset(): void {
+    this.timeRemaining = this.timeHelper.setRemainingTime({ minutes: 20, seconds: 0 });
     clearInterval(this.intervalId);
-    this.isPlayed=false;
-    this.controls[0].iconName='play_arrow';
-  }
-  
-  openDialog(){
-    this.isDialogOpen=(!this.isDialogOpen);
+    this.isPlayed = false;
+    this.controls[0].iconName = 'play_arrow';
   }
 
-  ngOnInit(): void {
-    //getting the timeRemaining
-    this.timeRemaining=this.timeHelper.getRemainingTime();
-    this.intervalId=this.intervalTimer();
-    /* this._window.api.receive("fromMain",()=>{
-      console.log("recived");
-      //this.openDialog();
-    }); */
-    
+  //opens the dialog when timer has finished
+  openDialog() {
+    this.isDialogOpen = (!this.isDialogOpen);
+    this.onPlayPause();
   }
- 
 
-  
-  showNotif(){
+  //to show notif, when timer is reset
+  showNotif() {
 
     console.log("Notif shown");
     this._window.api.send("onTimerNotify", "onTimerNotify");
-    //this.ipc.send('onTimerNotify');
+
   }
- 
-  
+
+
+
+
+
+
+
 
 }
