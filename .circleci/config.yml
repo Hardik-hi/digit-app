@@ -8,8 +8,7 @@ jobs:
       - checkout
       - run:
           name: Update NPM
-          command: "sudo apt --auto-remove purge npm 
-sudo apt --auto-remove purge nodejs sudo npm install -g npm"
+          command: "npm install -g npm"
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
