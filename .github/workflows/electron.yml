@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
       with:
-        ref: feature/github-actions        
+        ref: main      
     - uses: actions/setup-node@master
       with:
         node-version: 16.13.1
