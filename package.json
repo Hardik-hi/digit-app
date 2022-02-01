@@ -14,7 +14,7 @@
     "start:forge": "electron-forge start",
     "package": "electron-forge package",
     "make": "ng build --base-href ./ && electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "ng build --base-href ./ && electron-forge publish"
   },
   "build": {
     "asar": true

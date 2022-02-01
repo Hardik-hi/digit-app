@@ -18,7 +18,7 @@ function createWindow() {
             contextIsolation: true, // protect against prototype pollution
             enableRemoteModule: false, // turn off remote
             preload: __dirname + '/preload.js',
-            devTools: false,
+            devTools: true,
             sandbox: true,
         },
         title: 'Digit',
