@@ -54,7 +54,7 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "repository": {
-              "owner": "hardik-hi",
+              "owner": "Hardik-hi",
               "name": "digit-app"
             }
           }
