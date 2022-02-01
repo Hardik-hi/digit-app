@@ -97,7 +97,8 @@ export class HomescreenComponent implements OnInit {
   //opens the dialog when timer has finished
   openDialog() {
     this.isDialogOpen = (!this.isDialogOpen);
-    this.onPlayPause();
+    if(!this.isDialogOpen)
+      this.onPlayPause();
   }
 
   //to show notif, when timer is reset

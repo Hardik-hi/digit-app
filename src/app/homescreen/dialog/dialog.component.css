@@ -48,15 +48,15 @@
 }
 .Blink{
     animation-name: example1;
-    animation-delay: 4s;
+    animation-delay: 2s;
 }
 .Look{
     animation-name: example2;
-    animation-delay: 6s;
+    animation-delay: 4s;
 }
 .Walk{
     animation-name: example3;
-    animation-delay: 8s;
+    animation-delay: 6s;
 }
 
 .tile-title{
