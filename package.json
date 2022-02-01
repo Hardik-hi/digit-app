@@ -15,6 +15,9 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish"
   },
+  "build": {
+    "asar": true
+    },
   "private": true,
   "author": {
     "name": "Hardik Sharma",
@@ -52,8 +55,7 @@
           "config": {
             "repository": {
               "owner": "hardik-hi",
-              "name": "digit-app",
-              "draft": true
+              "name": "digit-app"
             }
           }
         }
